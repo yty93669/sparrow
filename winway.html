@@ -79,19 +79,34 @@
         document.getElementById('selected-money').textContent = selectedMoney;
         document.getElementById('fish-count').textContent = fish;
 
-        // 跳转函数
-        function navigateTo(baseUrl) {
-            const targetUrl = `${baseUrl}?selectedMoney=${encodeURIComponent(selectedMoney)}&fish=${encodeURIComponent(fish)}`;
-            window.location.href = targetUrl;
+        // 根据不同情况跳转
+        function navigateTo(choice) {
+            let baseUrl;
+            
+            if (choice === 'chuck') {
+                // 用户选择了“点炮”，在这里输入你想跳转的URL
+                baseUrl = 'https://yty93669.github.io/chuck';
+                console.log("跳转到: ", baseUrl);
+            } else if (choice === 'self') {
+                // 用户选择了“自摸”，在这里输入你想跳转的URL
+                baseUrl = 'https://yty93669.github.io/self';
+                console.log("跳转到: ", baseUrl);
+            } else {
+                console.error('未知选项');
+                return;
+            }
+
+            // 拼接参数并跳转
+            window.location.href = `${baseUrl}?selectedMoney=${encodeURIComponent(selectedMoney)}&fish=${encodeURIComponent(fish)}`;
         }
 
         // 绑定点击事件跳转
         document.getElementById('chuck').addEventListener('click', function() {
-            navigateTo('https://yty93669.github.io/chuck');
+            navigateTo('chuck');
         });
 
         document.getElementById('self').addEventListener('click', function() {
-            navigateTo('https://yty93669.github.io/self');
+            navigateTo('self');
         });
     </script>
 </body>
