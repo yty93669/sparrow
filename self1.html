@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>一家扎针</title>
+    <title>自摸方式选择</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -53,11 +53,6 @@
         .choose:hover {
             background-color: #ddd;
         }
-        .price {
-            font-size: 1.5rem;
-            margin-top: 20px;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
@@ -67,7 +62,6 @@
         <div class="title">自摸方式</div>
         <div class="choose" id="pinself">针家自摸</div>
         <div class="choose" id="nonpinself">非针家自摸</div>
-    
     </div>
 
     <script>
@@ -88,12 +82,12 @@
             // 计算价格：每人价格 = (鱼的数量 + 1) * 2 * selectedMoney
             const price = (fishCount + 1) * 2 * selectedMoneyValue;
 
-            // 显示价格
-            document.getElementById('price').textContent = price.toFixed(2);  // 保留两位小数
+            console.log("计算出的价格: ", price);
+            return price;
         }
 
         // 调用计算价格的函数
-        calculatePrice();
+        const price = calculatePrice();
 
         // 跳转函数
         function navigateTo(page) {
@@ -108,7 +102,7 @@
             }
 
             // 拼接参数并跳转
-            window.location.href = `${baseUrl}?selectedMoney=${encodeURIComponent(selectedMoney)}&fish=${encodeURIComponent(fish)}`;
+            window.location.href = `${baseUrl}?selectedMoney=${encodeURIComponent(selectedMoney)}&fish=${encodeURIComponent(fish)}&price=${encodeURIComponent(price)}`;
         }
 
         // 绑定点击事件跳转
