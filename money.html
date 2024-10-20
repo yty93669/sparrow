@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通辽麻掌结账系统</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://yty93669.oss-cn-beijing.aliyuncs.com/%E9%80%9A%E8%BE%BD%E9%BA%BB%E6%8E%8C%E8%AE%B0%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E8%83%8C%E6%99%AF.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+        }
+        .header {
+            height: 10vh; /* 使用视口高度单位来设置高度 */
+            width: 100%;
+            text-align: center;
+            font-size: 8vw; /* 使用视口宽度单位设置字体大小，适应不同设备 */
+            position: relative;
+            top: 35vh; /* 页面高度的 35% 来定位 */
+            color: rgb(3, 3, 3);
+        }
+        .button-container {
+            position: relative;
+            top: 50vh; /* 使用视口高度来定位按钮 */
+            text-align: center;
+        }
+        .enter-button {
+            padding: 1.5vh 4vw; /* 相对单位适应设备 */
+            font-size: 4vw; /* 使用视口宽度单位设置按钮字体 */
+            cursor: pointer;
+        }
+
+        /* 针对最大宽度375px的设备进行优化 */
+        @media (max-width: 375px) {
+            .header {
+                font-size: 9vw; /* 增大字体以便更适合较小屏幕 */
+                top: 30vh; /* 调整标题的顶部位置 */
+            }
+            .button-container {
+                top: 55vh; /* 调整按钮的定位 */
+            }
+            .enter-button {
+                font-size: 5vw; /* 调整按钮字体大小 */
+                padding: 2vh 5vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        通辽麻掌结账系统
+    </div>
+    <div class="button-container">
+        <a href="">
+            <button class="enter-button">点击进入</button>
+        </a>
+    </div>
+</body>
+</html>
