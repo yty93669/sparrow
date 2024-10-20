@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>点炮方式选择</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://yty93669.oss-cn-beijing.aliyuncs.com/%E9%80%9A%E8%BE%BD%E9%BA%BB%E6%8E%8C%E8%AE%B0%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E8%83%8C%E6%99%AF.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 375px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .heady {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        .title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .choose {
+            width: 80%;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            border: 2px solid #ccc;
+            text-align: center;
+            margin: 10px 0;
+            cursor: pointer;
+            position: relative;
+        }
+        .choose:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="heady">基本金额：<span id="selected-money"></span> >> 鱼数：<span id="fish-count"></span> >> 胡牌方式：点炮 >> 扎针个数：2</div>
+    
+    <div class="container">
+        <div class="title">点炮方式</div>
+        <div class="choose" id="give-points">给针家点炮</div>
+        <div class="choose" id="points-to-pinner">针家点炮</div>
+        <div class="choose" id="non-pin-to-non-pin">非针家给非针家点炮</div>
+    </div>
+
+    <script>
+        // 获取URL参数
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedMoney = decodeURIComponent(urlParams.get('selectedMoney') || '');
+        const fish = decodeURIComponent(urlParams.get('fish') || '');
+
+        // 显示传递的金额和鱼数
+        document.getElementById('selected-money').textContent = selectedMoney;
+        document.getElementById('fish-count').textContent = fish;
+
+        // 跳转函数，根据选项跳转到不同页面
+        function navigateTo(page) {
+            let baseUrl;
+            if (page === 'give-points') {
+                baseUrl = 'https://yty93669.github.io/chuck2_NP_to_P';  // 给针家点炮 URL
+            } else if (page === 'points-to-pinner') {
+                baseUrl = 'https://yty93669.github.io/chuck2_P_to_NP';  // 针家点炮 URL
+            } else if (page === 'non-pin-to-non-pin') {
+                baseUrl = 'https://yty93669.github.io/chuck2_NP_to_NP';  // 非针家给非针家点炮 URL
+            } else {
+                console.error('未知选项');
+                return;
+            }
+
+            // 拼接参数并跳转
+            window.location.href = `${baseUrl}?selectedMoney=${encodeURIComponent(selectedMoney)}&fish=${encodeURIComponent(fish)}`;
+        }
+
+        // 绑定点击事件跳转
+        document.getElementById('give-points').addEventListener('click', function() {
+            navigateTo('give-points');
+        });
+
+        document.getElementById('points-to-pinner').addEventListener('click', function() {
+            navigateTo('points-to-pinner');
+        });
+
+        document.getElementById('non-pin-to-non-pin').addEventListener('click', function() {
+            navigateTo('non-pin-to-non-pin');
+        });
+    </script>
+</body>
+</html>
