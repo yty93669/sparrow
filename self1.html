@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>一人扎针</title>
+    <title>一家扎针</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -67,6 +67,7 @@
         <div class="title">自摸方式</div>
         <div class="choose" id="pinself">针家自摸</div>
         <div class="choose" id="nonpinself">非针家自摸</div>
+    
     </div>
 
     <script>
@@ -98,9 +99,9 @@
         function navigateTo(page) {
             let baseUrl;
             if (page === 'pinself') {
-                baseUrl = 'https://yty93669.github.io/self1_ps';  // 针家自摸 URL
+                baseUrl = 'https://your-site/self1_ps';  // 针家自摸 URL
             } else if (page === 'nonpinself') {
-                baseUrl = 'https://yty93669.github.io/self1_nps';  // 非针家自摸 URL
+                baseUrl = 'https://your-site/self1_nps';  // 非针家自摸 URL
             } else {
                 console.error('未知选项');
                 return;
