@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鱼的选择</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://yty93669.oss-cn-beijing.aliyuncs.com/%E9%80%9A%E8%BE%BD%E9%BA%BB%E6%8E%8C%E8%AE%B0%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E8%83%8C%E6%99%AF.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 375px; /* 限制最大宽度，适应移动设备 */
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* 半透明背景层 */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .heady {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+        .fish-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .fish-item {
+            width: 30%;
+            height: 100px;
+            background-color: rgb(250, 200, 134);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            margin: 10px 0;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        .fish-count {
+            font-size: 1.5rem;
+            margin-top: 20px;
+        }
+        .next-button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heady">基本金额：<span id="selected-money"></span> &gt;&gt; 鱼数</div>
+
+        <div class="title">有几条鱼</div>
+
+        <div class="fish-container" id="fish-container">
+            <!-- 鱼的选择项将通过JS动态添加 -->
+        </div>
+
+        <div class="fish-count">有 <span id="fish-count">0</span> 条鱼</div>
+
+        <button class="next-button" id="next-step">下一步</button>
+    </div>
+
+    <script>
+        // 模拟的数据
+        const items = [
+            { id: 1, content: '1' },
+            { id: 2, content: '2' },
+            { id: 3, content: '3' },
+            { id: 4, content: '4' },
+            { id: 5, content: '5' },
+            { id: 6, content: '6' },
+            { id: 7, content: '7' },
+            { id: 8, content: '8' },
+            { id: 9, content: '9' }
+        ];
+
+        let selectedMoney = '';  // 存储传递的金额
+        let selectedFish = '';  // 存储选择的鱼的数量
+
+        // 获取URL参数
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('selectedMoney')) {
+            selectedMoney = decodeURIComponent(urlParams.get('selectedMoney'));
+            document.getElementById('selected-money').textContent = selectedMoney;
+        } else {
+            console.error("未接收到金额参数");
+        }
+
+        // 动态生成鱼数选择项
+        const fishContainer = document.getElementById('fish-container');
+        items.forEach(item => {
+            const fishItem = document.createElement('div');
+            fishItem.classList.add('fish-item');
+            fishItem.textContent = item.content;
+            fishItem.dataset.content = item.content;
+
+            // 点击鱼数项的事件
+            fishItem.addEventListener('click', function () {
+                selectedFish = this.dataset.content;
+                document.getElementById('fish-count').textContent = selectedFish;
+            });
+
+            fishContainer.appendChild(fishItem);
+        });
+
+        // 下一步按钮点击事件
+        document.getElementById('next-step').addEventListener('click', function () {
+            if (!selectedFish) {
+                alert('请先选择鱼的数量');
+                return;
+            }
+            // 跳转到下一步页面并传递参数
+            window.location.href = `/pages/winway/winway.html?selectedMoney=${encodeURIComponent(selectedMoney)}&fish=${encodeURIComponent(selectedFish)}`;
+        });
+    </script>
+</body>
+</html>
