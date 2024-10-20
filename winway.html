@@ -80,18 +80,18 @@
         document.getElementById('fish-count').textContent = fish;
 
         // 跳转函数
-        function navigateTo(page) {
-            const targetUrl = `/pages/${page}/${page}.html?selectedMoney=${encodeURIComponent(selectedMoney)}&fish=${encodeURIComponent(fish)}`;
+        function navigateTo(baseUrl) {
+            const targetUrl = `${baseUrl}?selectedMoney=${encodeURIComponent(selectedMoney)}&fish=${encodeURIComponent(fish)}`;
             window.location.href = targetUrl;
         }
 
         // 绑定点击事件跳转
         document.getElementById('chuck').addEventListener('click', function() {
-            navigateTo('chuck');
+            navigateTo('https://yty93669.github.io/chuck');
         });
 
         document.getElementById('self').addEventListener('click', function() {
-            navigateTo('self');
+            navigateTo('https://yty93669.github.io/self');
         });
     </script>
 </body>
