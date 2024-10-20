@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>两人扎针</title>
+    <title>两家扎针</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('https://yty93669.oss-cn-beijing.aliyuncs.com/%E9%80%9A%E8%BE%BD%E9%BA%BB%E6%8E%8C%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E8%83%8C%E6%99%AF.jpg');
+            background-image: url('https://yty93669.oss-cn-beijing.aliyuncs.com/%E9%80%9A%E8%BE%BD%E9%BA%BB%E6%8E%8C%E8%AE%B0%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E8%83%8C%E6%99%AF.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -53,15 +53,10 @@
         .choose:hover {
             background-color: #ddd;
         }
-        .price {
-            font-size: 1.5rem;
-            margin-top: 20px;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
-    <div class="heady">基本金额：<span id="selected-money"></span> >> 鱼数：<span id="fish-count"></span> >> 胡牌方式：自摸 >> 扎针个数：2</div>
+    <div class="heady">基本金额：<span id="selected-money"></span> >> 鱼数：<span id="fish-count"></span> >> 胡牌方式：自摸 >> 扎针个数：1</div>
     
     <div class="container">
         <div class="title">自摸方式</div>
@@ -87,27 +82,27 @@
             // 计算价格：每人价格 = (鱼的数量 + 1) * 2 * selectedMoney
             const price = (fishCount + 1) * 2 * selectedMoneyValue;
 
-            // 显示价格
-            document.getElementById('price').textContent = price.toFixed(2);  // 保留两位小数
+            console.log("计算出的价格: ", price);
+            return price;
         }
 
         // 调用计算价格的函数
-        calculatePrice();
+        const price = calculatePrice();
 
         // 跳转函数
         function navigateTo(page) {
             let baseUrl;
             if (page === 'pinself') {
-                baseUrl = 'https://yty93669.github.io/self2_ps';  // 针家自摸 URL
+                baseUrl = 'https://your-site/self1_ps';  // 针家自摸 URL
             } else if (page === 'nonpinself') {
-                baseUrl = 'https://yty93669.github.io/self2_nps';  // 非针家自摸 URL
+                baseUrl = 'https://your-site/self1_nps';  // 非针家自摸 URL
             } else {
                 console.error('未知选项');
                 return;
             }
 
             // 拼接参数并跳转
-            window.location.href = `${baseUrl}?selectedMoney=${encodeURIComponent(selectedMoney)}&fish=${encodeURIComponent(fish)}`;
+            window.location.href = `${baseUrl}?selectedMoney=${encodeURIComponent(selectedMoney)}&fish=${encodeURIComponent(fish)}&price=${encodeURIComponent(price)}`;
         }
 
         // 绑定点击事件跳转
