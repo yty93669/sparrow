@@ -40,7 +40,7 @@
             margin-bottom: 20px;
         }
         .choose {
-            width: 80%;
+            width: 45%;
             padding: 15px;
             background-color: #f0f0f0;
             border-radius: 10px;
@@ -81,27 +81,41 @@
         document.getElementById('selected-money').textContent = selectedMoney;
         document.getElementById('fish-count').textContent = fish;
 
-        // 跳转函数
+        // 跳转函数，根据选项跳转到不同页面
         function navigateTo(page) {
-            const targetUrl = `/pages/${page}/${page}.html?selectedMoney=${encodeURIComponent(selectedMoney)}&fish=${encodeURIComponent(fish)}`;
-            window.location.href = targetUrl;
+            let baseUrl;
+            if (page === 'no-pins') {
+                baseUrl = 'https://yty93669.github.io/chuck0';  // 输入你想跳转的URL
+            } else if (page === 'one-pin') {
+                baseUrl = 'https://yty93669.github.io/chuck1';  // 输入你想跳转的URL
+            } else if (page === 'two-pins') {
+                baseUrl = 'https://yty93669.github.io/chuck2';  // 输入你想跳转的URL
+            } else if (page === 'three-pins') {
+                baseUrl = 'https://yty93669.github.io/chuck3';  // 输入你想跳转的URL
+            } else {
+                console.error('未知选项');
+                return;
+            }
+
+            // 拼接参数并跳转
+            window.location.href = `${baseUrl}?selectedMoney=${encodeURIComponent(selectedMoney)}&fish=${encodeURIComponent(fish)}`;
         }
 
         // 绑定点击事件跳转
         document.getElementById('no-pins').addEventListener('click', function() {
-            navigateTo('chuck0');
+            navigateTo('no-pins');
         });
 
         document.getElementById('one-pin').addEventListener('click', function() {
-            navigateTo('chuck1');
+            navigateTo('one-pin');
         });
 
         document.getElementById('two-pins').addEventListener('click', function() {
-            navigateTo('chuck2');
+            navigateTo('two-pins');
         });
 
         document.getElementById('three-pins').addEventListener('click', function() {
-            navigateTo('chuck3');
+            navigateTo('three-pins');
         });
     </script>
 </body>
