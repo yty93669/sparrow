@@ -67,7 +67,7 @@
             const selectedMoneyValue = parseFloat(selectedMoney) || 0;
 
             // 计算价格：价格 = (鱼的数量 + 1) * 8 * 金额
-            const price = (fishCount + 1) * 5 * selectedMoneyValue;
+            const price = (fishCount + 1) * 8 * selectedMoneyValue;
 
             // 显示价格
             document.getElementById('price').textContent = price.toFixed(2);  // 保留两位小数
